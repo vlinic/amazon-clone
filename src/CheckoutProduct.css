@@ -16,18 +16,17 @@
   color: #111;
 }
 
-
-.checkoutProduct__image{
-    object-fit: contain;
-    width: 180px;
-    height: 180px;
+.checkoutProduct__image {
+  object-fit: contain;
+  width: 180px;
+  height: 180px;
 }
 
-.checkoutProduct__rating{
-    display:flex;
+.checkoutProduct__rating {
+  display: flex;
 }
 
-.checkoutProduct__title{
-    font-size: 18px;
-    font-weight: 800;
+.checkoutProduct__title {
+  font-size: 18px;
+  font-weight: 800;
 }
