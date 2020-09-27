@@ -1,10 +1,37 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { auth } from "./firebase";
 import "./Login.css";
 
 function Login() {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const signIn = (e) => {
+    e.preventDefault();
+
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((auth) => {
+        history.push("/");
+      })
+      .catch((error) => alert(error.message));
+  };
+
+  const register = (e) => {
+    e.preventDefault();
+
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        console.log(auth);
+        if (auth) {
+          history.push("/");
+        }
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <div className="login">
@@ -32,14 +59,20 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button onClick={signIn} className="login__signInButton">Sign In</button>
+          <button
+            onClick={signIn}
+            type="submit"
+            className="login__signInButton"
+          >
+            Sign In
+          </button>
         </form>
         <p>
           By Signing-in you agree to the AMAZON FAKE CLONE condition of use &
           Sale. Please see our Privacy Notice, our Cookies Notice and our
           Interest_based ADS Notice
         </p>
-        <button className="login__registerButton">
+        <button onClick={register} className="login__registerButton">
           Create Your Amazon Account
         </button>
       </div>

@@ -5,7 +5,7 @@ import Subtotal from "./Subtotal";
 import { useStateValue } from "./StateProvider";
 
 function Checkout() {
-  const [ {basket}, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
 
   return (
     <div className="checkout">
@@ -16,19 +16,21 @@ function Checkout() {
           className="checkout__ad"
         />
         <div>
-            <h2 className="checkout__title">Your shopping basket</h2>
+          <h3 className="checkout__title"> Hello , {user?.email}</h3>
+          <h2 className="checkout__subtitle">Your shopping basket</h2>
 
-            {basket.map(item => (
-              <CheckoutProducts 
-                id = {item.id}
-                title = {item.title}
-                image = {item.image}
-                rating = {item.rating} />
-            ))}
+          {basket.map((item) => (
+            <CheckoutProducts
+              id={item.id}
+              title={item.title}
+              image={item.image}
+              rating={item.rating}
+            />
+          ))}
         </div>
       </div>
       <div className="checkout__right">
-          <Subtotal />          
+        <Subtotal />
       </div>
     </div>
   );
