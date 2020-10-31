@@ -3,8 +3,11 @@ import "./checkout.css";
 import CheckoutProducts from "./CheckoutProducts";
 import Subtotal from "./Subtotal";
 import { useStateValue } from "./StateProvider";
+import { getBasketTotal } from "./reducer";
+import { useHistory } from "react-router-dom";
 
 function Checkout() {
+  const history = useHistory();
   const [{ basket, user }, dispatch] = useStateValue();
 
   return (
@@ -24,6 +27,7 @@ function Checkout() {
               id={item.id}
               title={item.title}
               image={item.image}
+              price={item.price}
               rating={item.rating}
             />
           ))}
